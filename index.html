@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>암기시트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F2F4F7;
+    --card: #FFFFFF;
+    --ink: #121C33;
+    --ink-2: #4A566E;
+    --rule: #D3DAE5;
+    --brand: #121C33;
+    --on-brand: #FFFFFF;
+    --sheet: #D63A40;
+    --ok: #1D7F55;
+    --ok-bg: #E1F3EA;
+    --bad: #B42331;
+    --bad-bg: #FBE6E8;
+    --bad-solid: #B42331;
+    --hl: #FFE27A;
+    --focus: #2F6BFF;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0E131E;
+      --card: #171E2D;
+      --ink: #E9EDF5;
+      --ink-2: #9AA6BD;
+      --rule: #2B3548;
+      --brand: #E9EDF5;
+      --on-brand: #0E131E;
+      --ok: #5BD49B;
+      --ok-bg: #12352A;
+      --bad: #FF8A93;
+      --bad-bg: #3A1A1F;
+      --bad-solid: #D9414F;
+      --hl: #6B5A12;
+      --focus: #7FA6FF;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0E131E;
+    --card: #171E2D;
+    --ink: #E9EDF5;
+    --ink-2: #9AA6BD;
+    --rule: #2B3548;
+    --brand: #E9EDF5;
+    --on-brand: #0E131E;
+    --ok: #5BD49B;
+    --ok-bg: #12352A;
+    --bad: #FF8A93;
+    --bad-bg: #3A1A1F;
+    --bad-solid: #D9414F;
+    --hl: #6B5A12;
+    --focus: #7FA6FF;
+  }
+
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 16px/1.6 "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    min-height: 100vh;
+  }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 20px 16px 80px; }
+  .serif { font-family: "Noto Serif KR", "Nanum Myeongjo", "Apple Myungjo", serif; }
+
+  /* header */
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 28px; }
+  .brand { display: inline-flex; align-items: center; background: none; border: 0; padding: 4px 0; font-family: "Noto Serif KR", serif; font-weight: 700; font-size: 20px; }
+  .brand svg { margin-right: 10px; }
+  .status { font-size: 13px; color: var(--ink-2); text-align: right; }
+
+  h1, h2 { font-family: "Noto Serif KR", serif; margin: 0; line-height: 1.3; }
+  h1 { font-size: 32px; font-weight: 700; }
+  h2 { font-size: 20px; font-weight: 700; }
+
+  /* buttons */
+  .btn { background: var(--brand); color: var(--on-brand); border: 1.5px solid var(--brand); border-radius: 10px; padding: 10px 18px; min-height: 44px; font-weight: 600; }
+  .btn:hover:not(:disabled) { opacity: .88; }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+  .btn.danger { background: var(--bad-solid); border-color: var(--bad-solid); color: #fff; }
+  .btn.wide { width: 100%; }
+  .btn:disabled { opacity: .35; cursor: not-allowed; }
+  .link { background: none; border: 0; padding: 6px 2px; color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; }
+  .link:hover:not(:disabled) { color: var(--ink); }
+  .link:disabled { opacity: .35; cursor: default; text-decoration: none; }
+  .link.bad { color: var(--bad); }
+  .back { background: none; border: 0; padding: 6px 0; color: var(--ink-2); font-weight: 500; }
+  .back:hover { color: var(--ink); }
+
+  /* home */
+  .home-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+  .books { list-style: none; margin: 8px 0 0; padding: 0; border-top: 1px solid var(--rule); }
+  .bookrow { display: flex; width: 100%; align-items: baseline; justify-content: space-between; gap: 16px; padding: 20px 2px; background: none; border: 0; border-bottom: 1px solid var(--rule); text-align: left; }
+  .bt { font-family: "Noto Serif KR", serif; font-weight: 600; font-size: 20px; line-height: 1.4; overflow-wrap: anywhere; }
+  .bookrow:hover .bt, .bookrow:focus-visible .bt { background: linear-gradient(transparent 58%, var(--hl) 58%); }
+  .bm { color: var(--ink-2); font-size: 14px; white-space: nowrap; }
+  .empty { padding: 32px 0 40px; color: var(--ink-2); text-align: center; }
+  .empty p { margin: 0 0 18px; }
+  .loading { color: var(--ink-2); padding: 40px 0; display: flex; flex-direction: column; align-items: center; }
+  .loading p { margin: 8px 0 0; }
+
+  /* tabs / forms */
+  .tabs { display: flex; gap: 26px; border-bottom: 1px solid var(--rule); margin: -10px 0 24px; }
+  .tabs button { background: none; border: 0; padding: 10px 2px; margin-bottom: -1px; border-bottom: 3px solid transparent; font-size: 17px; font-weight: 500; color: var(--ink-2); }
+  .tabs button:hover { color: var(--ink); }
+  .tabs button[aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--sheet); }
+  .fieldgroup { margin: 16px 0 28px; }
+  .flabel { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500; color: var(--ink-2); }
+  select.field { width: 100%; }
+  .field.name { width: 100%; font-family: "Noto Serif KR", serif; font-weight: 600; font-size: 20px; }
+  .savebar { display: flex; gap: 10px; margin-top: 32px; }
+  .savebar .btn { flex: 1; }
+  .fmts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
+  .fmt { text-align: left; background: var(--paper); border: 1.5px solid var(--rule); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 2px; }
+  .fmt b { font-weight: 600; }
+  .fmt span { font-size: 13px; line-height: 1.4; color: var(--ink-2); }
+  .fmt:hover { border-color: var(--ink); }
+  .fmt[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
+  .fmt[aria-pressed="true"] span { color: var(--on-brand); opacity: .8; }
+
+  .study { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; padding: 18px; margin-bottom: 24px; }
+  .opts { display: flex; flex-direction: column; gap: 14px; margin-bottom: 18px; }
+  .opt { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .opt-l { font-size: 14px; color: var(--ink-2); }
+  .seg { display: inline-flex; border: 1.5px solid var(--rule); border-radius: 999px; padding: 3px; background: var(--paper); }
+  .seg button { border: 0; background: transparent; padding: 6px 14px; border-radius: 999px; font-size: 14px; color: var(--ink-2); }
+  .seg button[aria-pressed="true"] { background: var(--brand); color: var(--on-brand); font-weight: 600; }
+  select { border: 1.5px solid var(--rule); background: var(--paper); border-radius: 8px; padding: 6px 10px; min-height: 36px; }
+  .check { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-2); cursor: pointer; }
+  .check input { width: 18px; height: 18px; accent-color: var(--brand); }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .actions .btn { flex: 1 1 140px; }
+  .study .btn.wide { margin-top: 4px; }
+  .hint { margin: 12px 0 0; font-size: 14px; color: var(--ink-2); }
+
+  .words-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+  .addrow { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .addrow input { flex: 1 1 140px; min-width: 0; }
+  .addrow .btn { flex: 0 0 auto; }
+  .field { border: 1.5px solid var(--rule); background: var(--card); border-radius: 8px; padding: 10px 12px; min-height: 44px; }
+  .field:focus { outline: none; border-color: var(--ink); }
+  textarea.field { width: 100%; resize: vertical; line-height: 1.6; }
+  .bulk-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 8px; font-size: 14px; color: var(--ink-2); }
+  .wlist { list-style: none; margin: 18px 0 0; padding: 0; border-top: 1px solid var(--rule); }
+  .wrow { display: grid; grid-template-columns: 1fr 1.4fr 40px; gap: 8px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--rule); }
+  .wrow input { width: 100%; min-width: 0; padding: 9px 10px; background: transparent; border: 1.5px solid transparent; border-radius: 6px; }
+  .wrow input:hover { border-color: var(--rule); }
+  .wrow input:focus { outline: none; border-color: var(--ink); background: var(--card); }
+  .x { width: 36px; height: 36px; display: grid; place-items: center; background: none; border: 0; border-radius: 8px; color: var(--ink-2); }
+  .x:hover { background: var(--bad-bg); color: var(--bad); }
+  .noword { display: flex; align-items: center; gap: 14px; color: var(--ink-2); padding: 18px 0; }
+  .noword p { margin: 0; }
+  .danger-zone { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--rule); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .danger-zone p { margin: 0; color: var(--ink-2); font-size: 14px; flex: 1 1 200px; }
+
+  /* study screens */
+  .bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .count { font-size: 14px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .progress { height: 6px; background: var(--rule); border-radius: 99px; overflow: hidden; margin-bottom: 24px; }
+  .progress i { display: block; height: 100%; background: var(--sheet); transition: width .25s; }
+
+  .fcard { background: var(--card); border: 1px solid var(--rule); border-radius: 22px; overflow: hidden; box-shadow: 0 14px 34px -22px rgba(18, 28, 51, .45); }
+  .fq { padding: 40px 26px 34px; text-align: center; font-family: "Noto Serif KR", serif; font-weight: 700; font-size: clamp(28px, 7vw, 42px); line-height: 1.35; word-break: keep-all; overflow-wrap: anywhere; }
+  .fa { position: relative; overflow: hidden; border-top: 2px dashed var(--rule); min-height: 170px; display: grid; place-items: center; }
+  .fa-text { padding: 28px 26px; text-align: center; font-family: "Noto Serif KR", serif; font-weight: 600; font-size: clamp(22px, 5vw, 30px); line-height: 1.45; word-break: keep-all; overflow-wrap: anywhere; }
+  .film { position: absolute; inset: 0; border: 0; border-radius: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #fff; font-weight: 600; font-size: 16px;
+    background: linear-gradient(100deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 32%, rgba(0,0,0,.10) 100%), var(--sheet);
+    transition: transform .42s cubic-bezier(.2, .7, .2, 1); }
+  .revealed .film { transform: translateX(102%); pointer-events: none; }
+  .controls { display: flex; gap: 10px; margin-top: 18px; }
+  .controls .btn { flex: 1; min-height: 52px; }
+  .keys { margin: 14px 0 0; font-size: 13px; color: var(--ink-2); text-align: center; }
+  .center { text-align: center; margin-top: 8px; }
+
+  .qhint { margin: 0; padding: 0 26px 26px; text-align: center; color: var(--ink-2); font-size: 14px; }
+  .qcard .fq { padding-bottom: 14px; }
+  .choices { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; }
+  .choice { display: flex; gap: 14px; align-items: flex-start; width: 100%; text-align: left; background: var(--card); border: 1.5px solid var(--rule); border-radius: 12px; padding: 13px 16px; min-height: 52px; }
+  .choice:hover { border-color: var(--ink); }
+  .choice .key { flex: none; width: 24px; height: 24px; margin-top: 1px; border: 1px solid var(--rule); border-radius: 6px; display: grid; place-items: center; font-size: 13px; color: var(--ink-2); }
+  .choice .ct { flex: 1; overflow-wrap: anywhere; }
+  .choice .tag { flex: none; font-size: 13px; font-weight: 600; }
+  .choice.right { background: var(--ok-bg); border-color: var(--ok); }
+  .choice.right .tag { color: var(--ok); }
+  .choice.wrong { background: var(--bad-bg); border-color: var(--bad); }
+  .choice.wrong .tag { color: var(--bad); }
+  .locked .choice { cursor: default; }
+  .locked .choice:hover { border-color: var(--rule); }
+  .locked .choice.right:hover { border-color: var(--ok); }
+  .locked .choice.wrong:hover { border-color: var(--bad); }
+  .ans { width: 100%; margin-top: 16px; font-size: 18px; }
+  .ans[readonly] { background: var(--paper); }
+  .row { display: flex; gap: 10px; margin-top: 12px; }
+  .row .btn { flex: 1; }
+  .feedback { margin: 16px 0; padding: 14px 16px; border-radius: 12px; border: 1.5px solid; display: flex; align-items: center; gap: 14px; overflow-wrap: anywhere; }
+  .fb-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .feedback .char { animation: pop .38s cubic-bezier(.2, .9, .3, 1.4); }
+  @keyframes pop { from { transform: scale(.6) rotate(-8deg); opacity: 0; } to { transform: none; opacity: 1; } }
+  .feedback.ok { background: var(--ok-bg); border-color: var(--ok); }
+  .feedback.bad { background: var(--bad-bg); border-color: var(--bad); }
+  .feedback strong { font-weight: 600; }
+
+  .summary h2 { font-size: 26px; margin-bottom: 6px; }
+  .summary > p { margin: 0 0 20px; color: var(--ink-2); }
+  .review { list-style: none; margin: 0 0 24px; padding: 0; border-top: 1px solid var(--rule); }
+  .review li { padding: 14px 2px; border-bottom: 1px solid var(--rule); display: flex; flex-direction: column; gap: 4px; }
+  .review .rq { font-family: "Noto Serif KR", serif; font-weight: 600; font-size: 18px; overflow-wrap: anywhere; }
+  .review .ra { font-size: 15px; overflow-wrap: anywhere; }
+  .review .given { color: var(--bad); text-decoration: line-through; margin-right: 10px; }
+  .review .good { color: var(--ok); font-weight: 600; }
+
+  /* characters */
+  .char { display: block; flex: none; overflow: visible; }
+  .mascot-row { display: flex; align-items: flex-end; gap: 16px; margin: 4px 0 22px; }
+  .say { position: relative; margin: 0 0 14px; padding: 10px 14px; background: var(--card); border: 1.5px solid var(--rule); border-radius: 14px; font-size: 15px; }
+  .say::before { content: ""; position: absolute; left: -7px; bottom: 12px; width: 12px; height: 12px; background: var(--card); border-left: 1.5px solid var(--rule); border-bottom: 1.5px solid var(--rule); transform: rotate(45deg); }
+  .duo { display: flex; justify-content: center; align-items: flex-end; gap: 10px; margin-bottom: 18px; }
+  .titlerow { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .summary .mascot-row { margin-top: 6px; }
+
+  #toast-wrap { position: fixed; left: 0; right: 0; bottom: 0; padding: 0 16px calc(16px + env(safe-area-inset-bottom, 0px)); display: flex; justify-content: center; pointer-events: none; }
+  #toast { background: var(--brand); color: var(--on-brand); padding: 10px 16px; border-radius: 10px; font-size: 14px; opacity: 0; transform: translateY(8px); transition: opacity .2s, transform .2s; }
+  #toast.on { opacity: 1; transform: none; }
+
+  @media (max-width: 520px) {
+    h1 { font-size: 27px; }
+    .fmts { grid-template-columns: 1fr; }
+    .wrow { grid-template-columns: 1fr 1fr 36px; gap: 4px; }
+    .fq { padding: 32px 20px 26px; }
+    .opt .seg { width: 100%; }
+    .seg button { flex: 1; padding: 6px 4px; font-size: 13px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .film, .progress i, #toast { transition: none; }
+    .feedback .char { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<div id="toast-wrap"><div id="toast" role="status" aria-live="polite"></div></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- 유틸 ---------- */
+  const $app = document.getElementById('app');
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const newId = p => p + Math.random().toString(36).slice(2, 9) + Date.now().toString(36).slice(-4);
+  const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const norm = s => String(s).normalize('NFC').toLowerCase().replace(/\s+/g, ' ').trim();
+  const pickDir = m => m === 'mix' ? (Math.random() < .5 ? 't2m' : 'm2t') : m;
+  const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+  const valid = b => b.words.filter(w => w.term.trim() && w.meaning.trim());
+  const getBook = id => S.books.find(b => b.id === id);
+  function wrongEntries() {
+    const out = [];
+    for (const b of S.books) {
+      (b.wrongIds || []).forEach(wid => {
+        const w = b.words.find(x => x.id === wid);
+        if (w && w.term.trim() && w.meaning.trim()) {
+          out.push({ key: b.id + '|' + wid, bookId: b.id, bookTitle: b.title || '제목 없음', wid, term: w.term, meaning: w.meaning, dir: (b.wrongDirs && b.wrongDirs[wid]) || 't2m' });
+        }
+      });
+    }
+    return out;
+  }
+  const wrongCount = () => wrongEntries().length;
+  function addWrong(b, wid, dir) {
+    b.wrongIds = b.wrongIds || []; b.wrongDirs = b.wrongDirs || {};
+    if (!b.wrongIds.includes(wid)) b.wrongIds.push(wid);
+    b.wrongDirs[wid] = dir; touch(b);
+  }
+  function clearWrong(b, wid) {
+    if (!b) return;
+    if (b.wrongIds && b.wrongIds.includes(wid)) { b.wrongIds = b.wrongIds.filter(x => x !== wid); if (b.wrongDirs) delete b.wrongDirs[wid]; touch(b); }
+  }
+
+  /* 정답 판정: 뜻이 여러 개(쉼표·세미콜론·슬래시로 구분)면 하나만 맞혀도 정답, 괄호 설명은 없어도 정답 */
+  function variants(ans) {
+    const out = new Set();
+    const add = t => {
+      const n = norm(t); if (n) out.add(n);
+      const stripped = norm(t.replace(/\([^)]*\)|\[[^\]]*\]/g, '')); if (stripped) out.add(stripped);
+    };
+    add(ans);
+    String(ans).split(/[,;/、·]/).forEach(add);
+    return out;
+  }
+  const isCorrect = (given, answer) => { const g = norm(given); return !!g && variants(answer).has(g); };
+
+  /* ---------- 캐릭터 (SVG): 시트(빨간 암기 시트)와 형광이(노란 형광펜) ---------- */
+  const C = { ink: '#2A0B0E', line: '#4B1519', red: '#D63A40', redD: '#A82A30', pink: '#FF9DA3', yel: '#FFD84D', yelD: '#F2A900' };
+  const eyeDot = (x, y, r) => '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + C.ink + '"/><circle cx="' + (x + r * .35) + '" cy="' + (y - r * .35) + '" r="' + (r * .32) + '" fill="#fff"/>';
+  const eyeArc = (x, y, w) => '<path d="M' + (x - w) + ' ' + y + ' Q' + x + ' ' + (y - w * 1.6) + ' ' + (x + w) + ' ' + y + '" fill="none" stroke="' + C.ink + '" stroke-width="3.2" stroke-linecap="round"/>';
+  const stk = (d, w, col) => '<path d="' + d + '" fill="none" stroke="' + (col || C.ink) + '" stroke-width="' + (w || 3) + '" stroke-linecap="round" stroke-linejoin="round"/>';
+
+  function sheetSvg(expr, h) {
+    const arms = {
+      rest: 'M18 78 Q8 84 9 97 M102 78 Q112 84 111 97',
+      cheer: 'M18 76 Q5 64 9 46 M102 76 Q115 64 111 46',
+      think: 'M18 78 Q8 84 9 97 M102 82 Q108 70 90 74',
+      sad: 'M18 80 Q12 92 14 104 M102 80 Q108 92 106 104',
+      fight: 'M18 80 Q6 84 13 96 M102 76 Q115 64 108 46'
+    };
+    const pose = { happy: 'rest', cheer: 'cheer', think: 'think', sad: 'sad', sleep: 'rest', fight: 'fight' }[expr] || 'rest';
+    let face, extra = '';
+    switch (expr) {
+      case 'cheer':
+        face = eyeArc(44, 57, 6) + eyeArc(76, 57, 6) + '<path d="M49 64 Q60 86 71 64 Z" fill="' + C.ink + '"/><path d="M54 76 Q60 82 66 76 Q60 72 54 76Z" fill="#FF7C86"/>';
+        break;
+      case 'sad':
+        face = eyeDot(44, 57, 5.5) + eyeDot(76, 57, 5.5) + stk('M38 48 L50 43') + stk('M82 48 L70 43') + stk('M52 76 Q60 67 68 76');
+        extra = '<path d="M94 42 q6 9 0 13 q-6 -4 0 -13Z" fill="#9FD8FF" stroke="' + C.line + '" stroke-width="2"/>';
+        break;
+      case 'think':
+        face = eyeDot(46, 54, 5.5) + eyeDot(78, 54, 5.5) + stk('M70 42 Q78 37 86 42') + stk('M55 71 H66');
+        extra = '<circle cx="109" cy="22" r="2.6" fill="' + C.line + '"/><circle cx="113" cy="11" r="3.6" fill="' + C.line + '"/>';
+        break;
+      case 'sleep':
+        face = stk('M38 57 H50', 3.2) + stk('M70 57 H82', 3.2) + '<ellipse cx="60" cy="72" rx="3.4" ry="4" fill="' + C.ink + '"/>';
+        extra = stk('M3 28 H12 L3 40 H12', 2.6, C.line);
+        break;
+      case 'fight':
+        face = eyeDot(44, 58, 5.5) + eyeDot(76, 58, 5.5) + stk('M37 47 L51 52') + stk('M83 47 L69 52') + stk('M52 70 Q60 76 68 70');
+        break;
+      default:
+        face = eyeDot(44, 55, 5.5) + eyeDot(76, 55, 5.5) + stk('M51 66 Q60 77 69 66', 3.2);
+    }
+    const blush = '<ellipse cx="33" cy="68" rx="6" ry="3.6" fill="' + C.pink + '" opacity=".8"/><ellipse cx="87" cy="68" rx="6" ry="3.6" fill="' + C.pink + '" opacity=".8"/>';
+    const legs = stk('M44 114 V126 M76 114 V126', 5, C.line) + '<ellipse cx="40" cy="130" rx="9" ry="4.5" fill="' + C.line + '"/><ellipse cx="80" cy="130" rx="9" ry="4.5" fill="' + C.line + '"/>';
+    const body = '<path d="M34 12 H84 L102 30 V98 a16 16 0 0 1 -16 16 H34 a16 16 0 0 1 -16 -16 V28 a16 16 0 0 1 16 -16 Z" fill="' + C.red + '" stroke="' + C.line + '" stroke-width="3.5" stroke-linejoin="round"/>' +
+      '<path d="M84 12 V30 H102 Z" fill="' + C.redD + '" stroke="' + C.line + '" stroke-width="3" stroke-linejoin="round"/>' +
+      '<path d="M27 26 V90" stroke="#fff" stroke-opacity=".3" stroke-width="7" stroke-linecap="round"/><circle cx="27" cy="102" r="3.5" fill="#fff" fill-opacity=".3"/>';
+    return '<svg class="char" viewBox="0 0 120 140" width="' + Math.round(h * 120 / 140) + '" height="' + h + '" aria-hidden="true" focusable="false"><g transform="rotate(-4 60 70)">' +
+      legs + stk(arms[pose], 5, C.line) + body + blush + face + extra + '</g></svg>';
+  }
+
+  function markerSvg(expr, h) {
+    const arms = {
+      happy: 'M17 84 Q7 90 8 102 M67 84 Q77 90 76 102',
+      cheer: 'M17 82 Q4 70 8 54 M67 82 Q80 70 76 54',
+      sad: 'M17 86 Q11 98 13 108 M67 86 Q73 98 71 108'
+    };
+    let face;
+    if (expr === 'cheer') face = eyeArc(34, 79, 4.5) + eyeArc(50, 79, 4.5) + '<path d="M36 85 Q42 97 48 85Z" fill="' + C.ink + '"/>';
+    else if (expr === 'sad') face = eyeDot(34, 78, 4) + eyeDot(50, 78, 4) + stk('M37 93 Q42 87 47 93', 2.8);
+    else face = eyeDot(34, 78, 4) + eyeDot(50, 78, 4) + stk('M37 87 Q42 93 47 87', 2.8);
+    const blush = '<ellipse cx="26" cy="88" rx="4.2" ry="2.6" fill="' + C.pink + '" opacity=".85"/><ellipse cx="58" cy="88" rx="4.2" ry="2.6" fill="' + C.pink + '" opacity=".85"/>';
+    const legs = stk('M34 120 V131 M50 120 V131', 4.5, C.line) + '<ellipse cx="31" cy="134" rx="7" ry="3.6" fill="' + C.line + '"/><ellipse cx="53" cy="134" rx="7" ry="3.6" fill="' + C.line + '"/>';
+    const body = '<path d="M21 42 V18 a10 10 0 0 1 10 -10 H53 a10 10 0 0 1 10 10 V42 Z" fill="' + C.yelD + '" stroke="' + C.line + '" stroke-width="3.5" stroke-linejoin="round"/>' +
+      '<rect x="16" y="42" width="52" height="78" rx="12" fill="' + C.yel + '" stroke="' + C.line + '" stroke-width="3.5"/>' +
+      '<path d="M29 18 V32" stroke="#fff" stroke-opacity=".45" stroke-width="4" stroke-linecap="round"/>' +
+      '<path d="M24 56 V66" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round"/>';
+    return '<svg class="char" viewBox="0 0 84 140" width="' + Math.round(h * 84 / 140) + '" height="' + h + '" aria-hidden="true" focusable="false"><g transform="rotate(3 42 70)">' +
+      legs + stk(arms[expr] || arms.happy, 4.5, C.line) + body + blush + face + '</g></svg>';
+  }
+
+  const markSvg = () => '<svg width="22" height="26" viewBox="0 0 24 28" aria-hidden="true" focusable="false"><g transform="rotate(-7 12 14)"><path d="M5 3H16L21 8V22a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Z" fill="' + C.red + '"/><path d="M16 3V8H21Z" fill="' + C.redD + '"/><circle cx="8.5" cy="13" r="1.6" fill="' + C.ink + '"/><circle cx="15.5" cy="13" r="1.6" fill="' + C.ink + '"/><path d="M9.5 17.5 Q12 20.5 14.5 17.5" stroke="' + C.ink + '" stroke-width="1.4" fill="none" stroke-linecap="round"/></g></svg>';
+  const filmFace = () => '<svg width="76" height="38" viewBox="0 0 80 40" aria-hidden="true" focusable="false"><circle cx="22" cy="14" r="5.5" fill="' + C.ink + '"/><circle cx="24" cy="12" r="1.8" fill="#fff"/><circle cx="58" cy="14" r="5.5" fill="' + C.ink + '"/><circle cx="60" cy="12" r="1.8" fill="#fff"/><ellipse cx="10" cy="27" rx="6" ry="3.4" fill="' + C.pink + '" opacity=".8"/><ellipse cx="70" cy="27" rx="6" ry="3.4" fill="' + C.pink + '" opacity=".8"/><path d="M33 25 Q40 33 47 25" stroke="' + C.ink + '" stroke-width="3" fill="none" stroke-linecap="round"/></svg>';
+  const say = (chars, text) => '<div class="mascot-row">' + chars + '<p class="say">' + text + '</p></div>';
+
+  /* ---------- 상태 ---------- */
+  const S = {
+    ready: false,
+    loadError: false,
+    books: [],
+    view: { name: 'home' },
+    prefs: { dir: 't2m', shuffle: true, count: 0, bulk: false, mode: 'cards', studyId: '' },
+    bulkText: '',
+    storage: { mode: 'pending', status: 'idle' },
+    pendingDelete: null,
+    pendingDiscard: false
+  };
+
+  /* ---------- 저장소 (계정 DB 우선, 안 되면 브라우저 저장) ---------- */
+  const LS_KEY = 'memorize-sheet:books:v1';
+  const Store = {
+    mode: 'local', coll: null,
+    async init() {
+      try {
+        if (window.claude && typeof window.claude.use === 'function') {
+          const [user, db] = await Promise.all([window.claude.use('user'), window.claude.use('db')]);
+          if (user && db) {
+            const me = await user.me();
+            if (me && me.id) { this.coll = db.collection('data/users/' + me.id); this.mode = 'db'; return; }
+          }
+        }
+      } catch (e) { /* 아래에서 로컬로 전환 */ }
+      this.mode = 'local';
+    },
+    async load() {
+      if (this.mode === 'db') {
+        const snap = await this.coll.get();
+        return snap.docs.map(d => Object.assign(JSON.parse(JSON.stringify(d.data() || {})), { id: d.id }));
+      }
+      try { const raw = localStorage.getItem(LS_KEY); return raw ? JSON.parse(raw) : []; } catch (e) { return []; }
+    },
+    async save(book) {
+      if (this.mode === 'db') {
+        await this.coll.doc(book.id).set({ title: book.title, words: book.words, createdAt: book.createdAt, updatedAt: book.updatedAt });
+      } else {
+        localStorage.setItem(LS_KEY, JSON.stringify(S.books));
+      }
+    },
+    async remove(id) {
+      if (this.mode === 'db') await this.coll.doc(id).delete();
+      else localStorage.setItem(LS_KEY, JSON.stringify(S.books));
+    }
+  };
+
+  const timers = {}, inflight = {}, dirty = {}, retries = {};
+  const busy = () => Object.keys(timers).length > 0 || Object.values(inflight).some(Boolean);
+  function whereLabel() { return S.storage.mode === 'db' ? '내 계정' : '이 브라우저'; }
+  function statusLabel() {
+    if (S.storage.mode === 'pending') return '';
+    switch (S.storage.status) {
+      case 'saving': return '저장 중…';
+      case 'saved': return '저장됨 (' + whereLabel() + ')';
+      case 'error': return '저장하지 못했어요. 다시 시도하는 중';
+      default: return '자동 저장 (' + whereLabel() + ')';
+    }
+  }
+  function setStatus(s) {
+    S.storage.status = s;
+    const el = document.getElementById('status');
+    if (el) el.textContent = statusLabel();
+  }
+  function queueSave(id) {
+    setStatus('saving');
+    clearTimeout(timers[id]);
+    timers[id] = setTimeout(() => { delete timers[id]; flush(id); }, 600);
+  }
+  async function flush(id) {
+    if (inflight[id]) { dirty[id] = true; return; }
+    inflight[id] = true;
+    let ok = true;
+    try {
+      do {
+        dirty[id] = false;
+        const b = getBook(id);
+        if (!b) break;
+        await Store.save(b);
+      } while (dirty[id]);
+    } catch (e) { ok = false; }
+    inflight[id] = false;
+    if (ok) { retries[id] = 0; if (!busy()) setStatus('saved'); }
+    else {
+      setStatus('error');
+      retries[id] = (retries[id] || 0) + 1;
+      if (retries[id] <= 3) setTimeout(() => queueSave(id), 4000);
+    }
+  }
+  function flushAll() {
+    Object.keys(timers).forEach(id => { clearTimeout(timers[id]); delete timers[id]; flush(id); });
+  }
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flushAll(); });
+  window.addEventListener('pagehide', flushAll);
+
+  function touch(b) { b.updatedAt = Date.now(); if (S.view.draft !== b) queueSave(b.id); }
+
+  let toastT;
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg; el.classList.add('on');
+    clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('on'), 2200);
+  }
+
+  /* ---------- 대량 입력 파싱 ---------- */
+  function parseBulk(text) {
+    const items = []; let skipped = 0;
+    for (const raw of String(text).split(/\r?\n/)) {
+      const line = raw.trim(); if (!line) continue;
+      let idx = -1, len = 0;
+      for (const sep of ['\t', '=', ' - ', ',']) {
+        const k = line.indexOf(sep);
+        if (k > 0) { idx = k; len = sep.length; break; }
+      }
+      if (idx < 0) { skipped++; continue; }
+      const term = line.slice(0, idx).trim();
+      const meaning = line.slice(idx + len).replace(/\t+/g, ', ').trim();
+      if (term && meaning) items.push({ term, meaning }); else skipped++;
+    }
+    return { items, skipped };
+  }
+
+  /* ---------- 화면: 공통 ---------- */
+  function header() {
+    return '<header class="top"><button class="brand" data-act="home">' + markSvg() + '암기시트</button>' +
+      '<span class="status" id="status" aria-live="polite">' + esc(statusLabel()) + '</span></header>';
+  }
+
+  function tabs(active) {
+    return '<nav class="tabs" aria-label="메뉴">' +
+      '<button data-act="tab" data-v="home"' + (active === 'home' ? ' aria-current="page"' : '') + '>단어장</button>' +
+      '<button data-act="tab" data-v="study"' + (active === 'study' ? ' aria-current="page"' : '') + '>문제</button></nav>';
+  }
+  const byRecent = arr => arr.slice().sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+  const curBook = v => v.draft || getBook(v.id);
+
+  /* ---------- 화면: 단어장 목록 ---------- */
+  function homeView() {
+    const books = byRecent(S.books);
+    let body;
+    if (!books.length) {
+      body = '<div class="empty"><div class="duo">' + sheetSvg('cheer', 120) + markerSvg('cheer', 112) + '</div><p>아직 단어장이 없어요. 이름을 정하고 단어와 뜻을 넣어 첫 단어장을 만들어 보세요.</p><button class="btn" data-act="newbook">새 단어장 만들기</button></div>';
+    } else {
+      body = '<ul class="books">' + books.map(b =>
+        '<li><button class="bookrow" data-act="open" data-id="' + esc(b.id) + '"><span class="bt">' + esc(b.title || '제목 없음') +
+        '</span><span class="bm">단어 ' + valid(b).length + '개</span></button></li>').join('') + '</ul>';
+    }
+    return tabs('home') + '<div class="home-head"><h1>내 단어장</h1>' + (books.length ? '<button class="btn" data-act="newbook">새 단어장</button>' : '') + '</div>' +
+      (books.length ? say(sheetSvg('happy', 88), '오늘 외울 단어장을 골라 보세요.') : '') + body;
+  }
+
+  /* ---------- 화면: 단어장 만들기·편집 (이름, 단어, 뜻만 다룸) ---------- */
+  function editView(v) {
+    const b = curBook(v);
+    if (!b) { S.view = { name: 'home' }; return homeView(); }
+    const isDraft = !!v.draft, p = S.prefs;
+
+    let adder;
+    if (p.bulk) {
+      const r = parseBulk(S.bulkText);
+      adder =
+        '<textarea class="field" id="bulk" rows="6" spellcheck="false" placeholder="apple = 사과&#10;run - 달리다&#10;book, 책" aria-label="여러 단어 붙여넣기">' + esc(S.bulkText) + '</textarea>' +
+        '<div class="bulk-foot"><span id="bulkInfo">' + bulkInfoText(r) + '</span><button class="btn" id="bulkBtn" data-act="addbulk"' + (r.items.length ? '' : ' disabled') + '>추가</button></div>' +
+        '<p class="hint">한 줄에 하나씩 쓰고, 단어와 뜻은 탭, =, -, 쉼표 중 하나로 구분하세요.</p>';
+    } else {
+      adder =
+        '<div class="addrow">' +
+          '<input class="field" id="newTerm" placeholder="단어" autocomplete="off" autocapitalize="off" aria-label="새 단어">' +
+          '<input class="field" id="newMeaning" placeholder="뜻 (여러 개면 쉼표로 구분)" autocomplete="off" aria-label="새 단어의 뜻">' +
+          '<button class="btn" data-act="addword">추가</button>' +
+        '</div>';
+    }
+
+    const list = b.words.length
+      ? '<ul class="wlist">' + b.words.map(w =>
+          '<li class="wrow"><input data-wid="' + esc(w.id) + '" data-f="term" value="' + esc(w.term) + '" aria-label="단어" autocomplete="off" autocapitalize="off">' +
+          '<input data-wid="' + esc(w.id) + '" data-f="meaning" value="' + esc(w.meaning) + '" aria-label="뜻" autocomplete="off">' +
+          '<button class="x" data-act="delword" data-wid="' + esc(w.id) + '" aria-label="단어 삭제"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg></button></li>').join('') + '</ul>'
+      : '<div class="noword">' + sheetSvg('sleep', 64) + '<p>단어가 없어요. 위에서 단어와 뜻을 입력해 추가하세요.</p></div>';
+
+    let foot;
+    if (isDraft) {
+      foot = S.pendingDiscard
+        ? '<div class="danger-zone"><p>저장하지 않은 내용이 사라져요. 나갈까요?</p><button class="btn danger" data-act="discard">나가기</button><button class="btn ghost" data-act="keepediting">계속 작성</button></div>'
+        : '<div class="savebar"><button class="btn" data-act="savedraft">단어장 저장</button><button class="btn ghost" data-act="canceldraft">취소</button></div>';
+    } else {
+      foot = S.pendingDelete === b.id
+        ? '<div class="danger-zone"><p>이 단어장과 단어 ' + b.words.length + '개가 영구 삭제돼요.</p><button class="btn danger" data-act="delbook">삭제하기</button><button class="btn ghost" data-act="canceldel">취소</button></div>'
+        : '<div class="danger-zone"><p>변경 내용은 자동으로 저장돼요.</p><button class="link bad" data-act="askdel">단어장 삭제</button></div>';
+    }
+
+    return '<button class="back" data-act="' + (isDraft ? 'canceldraft' : 'home') + '">‹ 단어장 목록</button>' +
+      '<h1>' + (isDraft ? '새 단어장 만들기' : '단어장 편집') + '</h1>' +
+      '<div class="fieldgroup"><label class="flabel" for="titleInput">단어장 이름</label>' +
+        '<input class="field name" id="titleInput" value="' + esc(b.title) + '" maxlength="60" placeholder="예: 토익 필수 단어" autocomplete="off"' + (v.focusTitle ? ' data-autofocus' : '') + '></div>' +
+      '<section aria-label="단어 목록"><div class="words-head"><h2>단어 ' + b.words.length + '개</h2><button class="link" data-act="togglebulk">' + (p.bulk ? '하나씩 추가' : '여러 개 붙여넣기') + '</button></div>' +
+      adder + list + '</section>' + foot;
+  }
+
+  /* ---------- 화면: 문제 (단어장 선택 → 형식 선택 → 시작) ---------- */
+  function studyView() {
+    const p = S.prefs;
+    if (!S.books.length) {
+      return tabs('study') + '<div class="titlerow"><h1>문제 풀기</h1>' + sheetSvg('think', 72) + '</div><div class="empty"><p>문제를 풀려면 단어장이 먼저 필요해요.</p><button class="btn" data-act="newbook">새 단어장 만들기</button></div>';
+    }
+    const b = getBook(p.studyId);
+    if (!b) p.studyId = '';
+    const n = b ? valid(b).length : 0;
+    const counts = [0].concat([10, 20, 30, 50].filter(x => x < n));
+    if (!counts.includes(p.count)) p.count = 0;
+
+    let html = tabs('study') + '<div class="titlerow"><h1>문제 풀기</h1>' + sheetSvg(b ? 'happy' : 'think', 72) + '</div>' +
+      '<div class="fieldgroup"><label class="flabel" for="bookSel">단어장</label><select class="field" id="bookSel"><option value="">단어장을 선택하세요</option>' +
+      byRecent(S.books).map(x => '<option value="' + esc(x.id) + '"' + (x.id === p.studyId ? ' selected' : '') + '>' + esc(x.title || '제목 없음') + ' (단어 ' + valid(x).length + '개)</option>').join('') +
+      '</select></div>';
+
+    if (b) {
+      const need = p.mode === 'mc' ? 2 : 1, ok = n >= need;
+      const fmt = (k, name, desc) => '<button class="fmt" data-act="mode" data-v="' + k + '" aria-pressed="' + (p.mode === k) + '"><b>' + name + '</b><span>' + desc + '</span></button>';
+      html += '<section class="study" aria-label="문제 설정">' +
+        '<span class="flabel" id="l-mode">문제 형식</span>' +
+        '<div class="fmts" role="group" aria-labelledby="l-mode">' +
+          fmt('cards', '플래시카드', '카드를 넘기며 외우기') +
+          fmt('mc', '객관식', '보기에서 정답 고르기') +
+          fmt('short', '주관식', '정답을 직접 입력하기') +
+        '</div>' +
+        '<div class="opts">' +
+          '<div class="opt"><span class="opt-l" id="l-dir">출제 방향</span>' +
+            '<div class="seg" role="group" aria-labelledby="l-dir">' +
+              '<button data-act="dir" data-v="t2m" aria-pressed="' + (p.dir === 't2m') + '">단어 보고 뜻</button>' +
+              '<button data-act="dir" data-v="m2t" aria-pressed="' + (p.dir === 'm2t') + '">뜻 보고 단어</button>' +
+              '<button data-act="dir" data-v="mix" aria-pressed="' + (p.dir === 'mix') + '">섞어서(랜덤)</button>' +
+            '</div></div>' +
+          (p.mode === 'cards'
+            ? '<div class="opt"><label class="check"><input type="checkbox" id="shuf"' + (p.shuffle ? ' checked' : '') + '>카드 순서 섞기</label></div>'
+            : '<div class="opt"><label class="opt-l" for="cnt">문제 수</label><select id="cnt">' +
+                counts.map(c => '<option value="' + c + '"' + (c === p.count ? ' selected' : '') + '>' + (c === 0 ? '전체 ' + n + '문제' : c + '문제') + '</option>').join('') +
+              '</select></div>') +
+        '</div>' +
+        '<button class="btn wide" data-act="start"' + (ok ? '' : ' disabled') + '>시작하기</button>' +
+        (n === 0 ? '<p class="hint">이 단어장에는 단어가 없어요. 단어장 탭에서 단어를 추가해 주세요.</p>'
+          : !ok ? '<p class="hint">객관식은 단어가 2개 이상 있어야 해요.</p>' : '') +
+        '</section>';
+    }
+    return html;
+  }
+  function bulkInfoText(r) {
+    return r.items.length + '개 인식' + (r.skipped ? ', ' + r.skipped + '줄은 구분 기호가 없어 건너뜀' : '');
+  }
+
+  /* ---------- 화면: 플래시카드 ---------- */
+  function cardsView(v) {
+    const n = v.deck.length;
+    const bar = (label) =>
+      '<div class="bar"><button class="back" data-act="tostudy">‹ 문제 화면으로</button><span class="count">' + label + '</span></div>';
+    const prog = pct => '<div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="' + n + '" aria-valuenow="' + Math.min(v.i, n) + '"><i style="width:' + pct + '%"></i></div>';
+
+    if (v.i >= n) {
+      const known = v.marks.filter(k => k === 'known').length;
+      const unsure = v.deck.map((w, i) => ({ w, t2m: v.dirs[i] === 't2m', k: v.marks[i] })).filter(x => x.k === 'unsure');
+      return bar(n + ' / ' + n) + prog(100) +
+        '<div class="summary">' + say(sheetSvg(unsure.length ? 'happy' : 'cheer', 96), unsure.length ? '헷갈린 카드만 한 번 더 봐요.' : '전부 알고 있었어요!') + '<h2>' + n + '장을 모두 봤어요</h2><p>알아요 ' + known + '장, 헷갈려요 ' + unsure.length + '장</p>' +
+        (unsure.length ? '<ul class="review">' + unsure.map(x => '<li><span class="rq">' + esc(x.t2m ? x.w.term : x.w.meaning) + '</span><span class="ra">' + esc(x.t2m ? x.w.meaning : x.w.term) + '</span></li>').join('') + '</ul>' : '') +
+        '<div class="actions">' +
+          (unsure.length ? '<button class="btn" data-act="cardsretry">헷갈린 카드만 다시</button>' : '') +
+          '<button class="btn ' + (unsure.length ? 'ghost' : '') + '" data-act="cardsagain">처음부터 다시</button>' +
+          '<button class="btn ghost" data-act="tostudy">문제 화면으로</button>' +
+        '</div></div>';
+    }
+
+    const w = v.deck[v.i], t2m = v.dirs[v.i] === 't2m';
+    const q = t2m ? w.term : w.meaning, a = t2m ? w.meaning : w.term;
+    return bar((v.i + 1) + ' / ' + n) + prog(Math.round(v.i / n * 100)) +
+      '<article class="fcard' + (v.revealed ? ' revealed' : '') + '">' +
+        '<div class="fq">' + esc(q) + '</div>' +
+        '<div class="fa"><div class="fa-text">' + esc(a) + '</div>' +
+          '<button class="film" data-act="reveal" aria-label="정답 보기"' + (v.revealed ? ' tabindex="-1" aria-hidden="true" disabled' : '') + '>' + filmFace() + '<span>눌러서 ' + (t2m ? '뜻' : '단어') + ' 보기</span></button>' +
+        '</div>' +
+      '</article>' +
+      '<div class="controls">' + (v.revealed
+        ? '<button class="btn ghost" data-act="mark" data-k="unsure">헷갈려요</button><button class="btn" data-act="mark" data-k="known">알아요</button>'
+        : '<button class="btn" data-act="reveal">정답 보기</button>') + '</div>' +
+      '<p class="keys">스페이스로 정답 확인, 왼쪽·오른쪽 화살표로 헷갈려요·알아요</p>' +
+      '<div class="center"><button class="link" data-act="prev"' + (v.i === 0 ? ' disabled' : '') + '>이전 카드</button></div>';
+  }
+
+  /* ---------- 화면: 테스트 ---------- */
+  function testView(v) {
+    const n = v.qs.length, q = v.qs[v.i], t2m = q.dir === 't2m', done = v.answered;
+    const last = v.i === n - 1;
+    let html =
+      '<div class="bar"><button class="back" data-act="tostudy">‹ 그만하기</button><span class="count">' + (v.i + 1) + ' / ' + n + '</span></div>' +
+      '<div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="' + n + '" aria-valuenow="' + v.i + '"><i style="width:' + Math.round(v.i / n * 100) + '%"></i></div>' +
+      '<article class="fcard qcard"><div class="fq">' + esc(q.prompt) + '</div><p class="qhint">' +
+        (q.kind === 'mc' ? '알맞은 ' + (t2m ? '뜻을' : '단어를') + ' 고르세요' : (t2m ? '뜻을' : '단어를') + ' 직접 입력하세요') + '</p></article>';
+
+    if (q.kind === 'mc') {
+      html += '<ul class="choices' + (done ? ' locked' : '') + '">' + q.choices.map((c, i) => {
+        let cls = '', tag = '';
+        if (done) {
+          if (c === q.answer) { cls = ' right'; tag = '<span class="tag">정답</span>'; }
+          else if (c === done.given) { cls = ' wrong'; tag = '<span class="tag">내 선택</span>'; }
+        }
+        return '<li><button class="choice' + cls + '" data-act="choose" data-n="' + i + '"><span class="key" aria-hidden="true">' + (i + 1) + '</span><span class="ct">' + esc(c) + '</span>' + tag + '</button></li>';
+      }).join('') + '</ul>';
+    } else {
+      html += '<input class="field ans" id="ans" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="' + (t2m ? '뜻 입력' : '단어 입력') + '" aria-label="답 입력"' +
+        (done ? ' readonly value="' + esc(done.given) + '"' : ' data-autofocus') + '>';
+      if (!done) {
+        html += '<div class="row"><button class="btn" data-act="submit">확인</button><button class="btn ghost" data-act="dontknow">모르겠어요</button></div>';
+      }
+    }
+
+    if (done) {
+      const ok = done.correct;
+      html += '<div class="feedback ' + (ok ? 'ok' : 'bad') + '" role="status">' + sheetSvg(ok ? 'cheer' : (done.given ? 'sad' : 'think'), 64) +
+        '<div class="fb-text"><strong>' + (ok ? '정답이에요' : (done.given ? '틀렸어요' : '모르겠어요로 넘어갔어요')) + '</strong>' +
+        ((!ok || q.kind === 'short') ? '<span>정답: ' + esc(q.answer) + '</span>' : '') + '</div></div>' +
+        '<button class="btn wide" data-act="next" data-autofocus>' + (last ? '결과 보기' : '다음 문제') + '</button>';
+    }
+    return html;
+  }
+
+  function resultView(v) {
+    const n = v.results.length, right = v.results.filter(r => r.correct).length;
+    const wrong = v.results.filter(r => !r.correct), ratio = right / n;
+    const mood = ratio >= .8 ? ['cheer', 'cheer', '정말 잘했어요!'] : ratio >= .5 ? ['happy', 'happy', '거의 다 왔어요!'] : ['fight', 'sad', '다시 풀면 더 잘할 거예요!'];
+    return '<div class="bar"><button class="back" data-act="tostudy">‹ 문제 화면으로</button><span class="count">' + n + ' / ' + n + '</span></div>' +
+      '<div class="progress"><i style="width:100%"></i></div>' +
+      '<div class="summary">' + say(sheetSvg(mood[0], 104) + markerSvg(mood[1], 96), mood[2]) + '<h2>' + n + '문제 중 ' + right + '문제를 맞혔어요</h2>' +
+      (wrong.length
+        ? '<p>틀린 문제를 확인하고 다시 풀어 보세요.</p><ul class="review">' + wrong.map(r =>
+            '<li><span class="rq">' + esc(r.q.prompt) + '</span><span class="ra">' +
+            (r.given ? '<span class="given">' + esc(r.given) + '</span>' : '') + '<span class="good">' + esc(r.q.answer) + '</span></span></li>').join('') + '</ul>'
+        : '<p>모두 맞혔어요.</p>') +
+      '<div class="actions">' +
+        (wrong.length ? '<button class="btn" data-act="retrywrong">틀린 문제 다시 풀기</button>' : '') +
+        '<button class="btn ' + (wrong.length ? 'ghost' : '') + '" data-act="testagain">새로 테스트</button>' +
+        '<button class="btn ghost" data-act="tostudy">문제 화면으로</button>' +
+      '</div></div>';
+  }
+
+  /* ---------- 렌더 ---------- */
+  function render() {
+    let html = header();
+    if (!S.ready) html += '<div class="loading">' + sheetSvg('sleep', 84) + '<p>단어장을 불러오는 중…</p></div>';
+    else if (S.loadError) html += '<div class="empty"><p>단어장을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.</p><button class="btn" data-act="reload">다시 불러오기</button></div>';
+    else {
+      const v = S.view;
+      html += v.name === 'home' ? homeView() : v.name === 'edit' ? editView(v) : v.name === 'study' ? studyView() : v.name === 'cards' ? cardsView(v) : v.name === 'test' ? testView(v) : resultView(v);
+    }
+    $app.innerHTML = html;
+    const af = $app.querySelector('[data-autofocus]');
+    if (af) {
+      af.focus({ preventScroll: true });
+      if (af.hasAttribute('data-select') && af.select) af.select();
+    }
+    if (S.view.focusTitle) S.view.focusTitle = false;
+  }
+  const go = () => { render(); window.scrollTo(0, 0); };
+
+  /* ---------- 동작 ---------- */
+  function startCards(bookId, opts) {
+    opts = opts || {};
+    const b = getBook(bookId); if (!b) return;
+    let deck = opts.words || valid(b);
+    if (!opts.words && S.prefs.shuffle) deck = shuffle(deck);
+    const dirMode = opts.dir || S.prefs.dir;
+    S.view = { name: 'cards', bookId, dir: dirMode, dirs: deck.map(() => pickDir(dirMode)), deck, i: 0, revealed: false, marks: [] };
+    go();
+  }
+
+  function makeQuestion(word, kind, dir, pool) {
+    const d = pickDir(dir), t2m = d === 't2m';
+    const q = { wid: word.id, dir: d, prompt: t2m ? word.term : word.meaning, answer: t2m ? word.meaning : word.term, kind };
+    if (kind === 'mc') {
+      const seen = new Set([norm(q.answer)]), opts = [];
+      for (const w of shuffle(pool.filter(x => x.id !== word.id))) {
+        const t = t2m ? w.meaning : w.term, k = norm(t);
+        if (!seen.has(k)) { seen.add(k); opts.push(t); if (opts.length === 3) break; }
+      }
+      if (opts.length < 1) q.kind = 'short';
+      else q.choices = shuffle([q.answer].concat(opts));
+    }
+    return q;
+  }
+
+  function startTest(bookId, kind, opts) {
+    opts = opts || {};
+    const b = getBook(bookId); if (!b) return;
+    const pool = valid(b), dir = opts.dir || S.prefs.dir;
+    let words = shuffle(opts.words || pool);
+    if (!opts.words && S.prefs.count > 0 && S.prefs.count < words.length) words = words.slice(0, S.prefs.count);
+    S.view = { name: 'test', bookId, kind, dir, qs: words.map(w => makeQuestion(w, kind, dir, pool)), i: 0, answered: null, results: [] };
+    go();
+  }
+
+  function record(given, correct) {
+    const v = S.view, r = { q: v.qs[v.i], given, correct };
+    v.results.push(r); v.answered = r; render();
+  }
+  function choose(n) {
+    const v = S.view; if (v.name !== 'test' || v.answered) return;
+    const q = v.qs[v.i]; if (q.kind !== 'mc') return;
+    const given = q.choices[n]; if (given === undefined) return;
+    record(given, given === q.answer);
+  }
+  function submit() {
+    const v = S.view; if (v.name !== 'test' || v.answered) return;
+    const el = document.getElementById('ans'); if (!el || !norm(el.value)) { if (el) el.focus(); return; }
+    record(el.value.trim(), isCorrect(el.value, v.qs[v.i].answer));
+  }
+  function next() {
+    const v = S.view; if (v.name !== 'test' || !v.answered) return;
+    v.i++; v.answered = null;
+    if (v.i >= v.qs.length) { S.view = { name: 'result', bookId: v.bookId, kind: v.kind, dir: v.dir, results: v.results }; go(); }
+    else go();
+  }
+  function reveal() { const v = S.view; if (v.name === 'cards' && !v.revealed) { v.revealed = true; render(); } }
+  function mark(k) { const v = S.view; if (v.name !== 'cards' || !v.revealed) return; v.marks[v.i] = k; v.i++; v.revealed = false; render(); }
+
+  function addWords(b, items) {
+    const words = items.map(it => ({ id: newId('w'), term: it.term, meaning: it.meaning }));
+    b.words = words.concat(b.words); touch(b);
+  }
+
+  async function deleteBook(id) {
+    clearTimeout(timers[id]); delete timers[id];
+    S.books = S.books.filter(b => b.id !== id);
+    S.view = { name: 'home' }; S.pendingDelete = null; go();
+    setStatus('saving');
+    try { await Store.remove(id); setStatus(busy() ? 'saving' : 'saved'); toast('단어장을 삭제했어요'); }
+    catch (e) { setStatus('error'); toast('삭제를 저장하지 못했어요'); }
+  }
+
+  function guardDraft() {
+    const v = S.view;
+    if (v.name === 'edit' && v.draft && (v.draft.title.trim() || v.draft.words.length)) { S.pendingDiscard = true; render(); return true; }
+    return false;
+  }
+
+  const actions = {
+    home() { if (guardDraft()) return; S.view = { name: 'home' }; S.pendingDelete = null; go(); },
+    tab(el) { if (guardDraft()) return; S.view = { name: el.dataset.v }; S.pendingDelete = null; go(); },
+    open(el) { S.view = { name: 'edit', id: el.dataset.id }; S.pendingDelete = null; go(); },
+    tostudy() { S.view = { name: 'study' }; go(); },
+    newbook() {
+      const now = Date.now();
+      S.pendingDiscard = false;
+      S.view = { name: 'edit', draft: { id: newId('b'), title: '', words: [], createdAt: now, updatedAt: now }, focusTitle: true }; go();
+    },
+    savedraft() {
+      const b = S.view.draft, title = b.title.trim();
+      if (!title) { toast('단어장 이름을 입력해 주세요'); document.getElementById('titleInput').focus(); return; }
+      b.title = title; b.updatedAt = Date.now();
+      S.books.unshift(b); queueSave(b.id);
+      S.view = { name: 'home' }; go(); toast('단어장을 저장했어요');
+    },
+    canceldraft() { if (guardDraft()) return; S.view = { name: 'home' }; go(); },
+    discard() { S.pendingDiscard = false; S.view = { name: 'home' }; go(); },
+    keepediting() { S.pendingDiscard = false; render(); },
+    reload() { S.ready = false; S.loadError = false; render(); loadBooks(); },
+    dir(el) { S.prefs.dir = el.dataset.v; render(); },
+    mode(el) { S.prefs.mode = el.dataset.v; render(); },
+    start() {
+      const id = S.prefs.studyId; if (!getBook(id)) return;
+      if (S.prefs.mode === 'cards') startCards(id); else startTest(id, S.prefs.mode);
+    },
+    togglebulk() { S.prefs.bulk = !S.prefs.bulk; render(); },
+    addword() {
+      const b = curBook(S.view), t = document.getElementById('newTerm'), m = document.getElementById('newMeaning');
+      if (!t.value.trim()) { t.focus(); return; }
+      if (!m.value.trim()) { m.focus(); return; }
+      addWords(b, [{ term: t.value.trim(), meaning: m.value.trim() }]);
+      render();
+      const nt = document.getElementById('newTerm'); if (nt) nt.focus({ preventScroll: true });
+    },
+    addbulk() {
+      const b = curBook(S.view), r = parseBulk(S.bulkText);
+      if (!r.items.length) return;
+      addWords(b, r.items); S.bulkText = ''; render();
+      toast(r.items.length + '개 단어를 추가했어요');
+    },
+    delword(el) {
+      const b = curBook(S.view);
+      b.words = b.words.filter(w => w.id !== el.dataset.wid); touch(b); render();
+    },
+    askdel() { S.pendingDelete = S.view.id; render(); },
+    canceldel() { S.pendingDelete = null; render(); },
+    delbook() { deleteBook(S.view.id); },
+    reveal,
+    mark(el) { mark(el.dataset.k); },
+    prev() { const v = S.view; if (v.i > 0) { v.i--; v.revealed = false; render(); } },
+    cardsretry() { const v = S.view; startCards(v.bookId, { dir: v.dir, words: v.deck.filter((w, i) => v.marks[i] === 'unsure') }); },
+    cardsagain() { startCards(S.view.bookId, { dir: S.view.dir }); },
+    choose(el) { choose(+el.dataset.n); },
+    submit,
+    dontknow() { const v = S.view; if (v.name === 'test' && !v.answered) record('', false); },
+    next,
+    retrywrong() {
+      const v = S.view, b = getBook(v.bookId);
+      const words = v.results.filter(r => !r.correct).map(r => b.words.find(w => w.id === r.q.wid)).filter(Boolean);
+      startTest(v.bookId, v.kind, { dir: v.dir, words });
+    },
+    testagain() { const v = S.view; startTest(v.bookId, v.kind, { dir: v.dir }); }
+  };
+
+  $app.addEventListener('click', e => {
+    const el = e.target.closest('[data-act]');
+    if (el && actions[el.dataset.act]) actions[el.dataset.act](el, e);
+  });
+  $app.addEventListener('change', e => {
+    if (e.target.id === 'bookSel') { S.prefs.studyId = e.target.value; render(); }
+    else if (e.target.id === 'cnt') S.prefs.count = Number(e.target.value) || 0;
+    else if (e.target.id === 'shuf') S.prefs.shuffle = e.target.checked;
+  });
+  $app.addEventListener('input', e => {
+    const t = e.target;
+    if (S.view.name === 'edit') {
+      const b = curBook(S.view); if (!b) return;
+      if (t.id === 'titleInput') { b.title = t.value; touch(b); }
+      else if (t.dataset && t.dataset.wid && t.dataset.f) {
+        const w = b.words.find(x => x.id === t.dataset.wid);
+        if (w) { w[t.dataset.f] = t.value; touch(b); }
+      } else if (t.id === 'bulk') {
+        S.bulkText = t.value;
+        const r = parseBulk(S.bulkText);
+        document.getElementById('bulkInfo').textContent = bulkInfoText(r);
+        document.getElementById('bulkBtn').disabled = !r.items.length;
+      }
+    }
+  });
+  $app.addEventListener('keydown', e => {
+    if (e.key !== 'Enter' || e.isComposing) return;
+    const t = e.target;
+    if (t.id === 'newTerm') { e.preventDefault(); document.getElementById('newMeaning').focus(); }
+    else if (t.id === 'newMeaning') { e.preventDefault(); actions.addword(); }
+    else if (t.id === 'ans') { e.preventDefault(); if (S.view.answered) next(); else submit(); }
+    else if (t.id === 'titleInput') { e.preventDefault(); const nt = document.getElementById('newTerm'); if (nt) nt.focus(); else t.blur(); }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey || e.isComposing) return;
+    const t = e.target, tag = t && t.tagName, typing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
+    const v = S.view;
+    if (v.name === 'cards' && !typing && v.i < v.deck.length) {
+      if (e.key === ' ' || e.key === 'Enter') {
+        if (tag === 'BUTTON') return;
+        e.preventDefault(); reveal();
+      } else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (!v.revealed) reveal(); else mark(e.key === 'ArrowRight' ? 'known' : 'unsure');
+      }
+    } else if (v.name === 'test' && !typing) {
+      const q = v.qs[v.i];
+      if (!v.answered && q.kind === 'mc' && /^[1-4]$/.test(e.key)) choose(Number(e.key) - 1);
+      else if (v.answered && e.key === 'Enter' && tag !== 'BUTTON') { e.preventDefault(); next(); }
+    }
+  });
+
+  /* ---------- 시작 ---------- */
+  async function loadBooks() {
+    try {
+      const raw = await Store.load();
+      S.books = raw.filter(b => b && b.id).map(b => ({
+        id: b.id, title: b.title || '', createdAt: b.createdAt || 0, updatedAt: b.updatedAt || 0,
+        words: (Array.isArray(b.words) ? b.words : []).map(w => ({ id: w.id || newId('w'), term: String(w.term || ''), meaning: String(w.meaning || '') }))
+      }));
+      S.loadError = false;
+    } catch (e) { S.loadError = true; }
+    S.ready = true; render();
+  }
+  (async function boot() {
+    render();
+    await Store.init();
+    S.storage.mode = Store.mode;
+    await loadBooks();
+  })();
+})();
+</script>
+</body>
+</html>
